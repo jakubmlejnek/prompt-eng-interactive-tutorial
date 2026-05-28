@@ -11,7 +11,7 @@ notebook cells in order; "correctness" is judged by per-exercise grading
 functions embedded in the notebooks, not by CI.
 
 The course is 9 chapters plus an appendix, intended to be worked through in
-numbered order. It uses Claude 3 Haiku at `temperature=0.0` for deterministic
+numbered order. It uses Claude Haiku 4.5 at `temperature=0.0` for deterministic
 results.
 
 ## Three parallel editions (keep them in sync)
@@ -38,9 +38,12 @@ than renaming.
 1. **The `00_Tutorial_How-To` notebook must be run first.** It sets and
    `%store`s the shared variables that every other notebook reads back with
    `%store -r`:
-   - `Anthropic 1P`: stores `API_KEY` and `MODEL_NAME` (`claude-3-haiku-20240307`).
-   - `AmazonBedrock`: stores `MODEL_NAME` (`anthropic.claude-3-haiku-20240307-v1:0`)
-     and `AWS_REGION` (auto-detected from the boto3 session).
+   - `Anthropic 1P`: stores `API_KEY` and `MODEL_NAME` (`claude-haiku-4-5-20251001`).
+   - `AmazonBedrock`: stores `MODEL_NAME`
+     (`global.anthropic.claude-haiku-4-5-20251001-v1:0`, a global cross-region
+     inference profile — Claude 4.x models generally can't be invoked on-demand
+     with the bare regional ID) and `AWS_REGION` (auto-detected from the boto3
+     session).
 2. Every chapter notebook opens with a **Setup cell** that re-imports the stored
    variables, `pip install`s dependencies, and defines a `get_completion()`
    helper. This is why notebooks must be run top-to-bottom — later cells depend
